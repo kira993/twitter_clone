@@ -8,9 +8,9 @@ gem 'rails', '4.2.6'
 #Use Bootstrap for Twitter-like UI
 gem 'bootstrap-sass', '~> 3.3.6'
 # Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
+gem 'sqlite3'
 #Use pg as the database for Heroku deployment
-gem 'pg'
+#gem 'pg'
 #Pre-reqs for Heroku deployment
 gem 'rails_12factor', group: :production #dont use locally, just on heroku
 # Use SCSS for stylesheets
