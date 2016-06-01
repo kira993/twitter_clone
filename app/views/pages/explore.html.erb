@@ -33,7 +33,12 @@
           <img src="/penguin.jpg" class="rounded-img" width="50px" height="50px">
         </div>
         <div class="col-sm-11">
-          <p class="post-title"><span class="post-owner"><a href="/user/<%= User.find(@p.user_id).first_name %>"><%= User.find(@p.user_id).first_name %></a></span> <span class="post-creation">- <%= @p.created_at.to_formatted_s(:short) %></span></p>
+          <!--If signed in, user can click name to view profile, if not, cannot click links -->
+          <% if user_signed_in? %>
+            <p class="post-title"><span class="post-owner"><a href="/user/<%= User.find(@p.user_id).first_name %>"><%= User.find(@p.user_id).first_name %></a></span> <span class="post-creation">- <%= @p.created_at.to_formatted_s(:short) %></span></p>
+          <% else %>
+            <p class="post-title"><span class="post-owner"><%= User.find(@p.user_id).first_name %></span> <span class="post-creation">- <%= @p.created_at.to_formatted_s(:short) %></span></p>
+          <% end %>
           <p class="post-content"><%= @p.content %></p>
         </div>
         <div class="col-sm-12">
@@ -63,7 +68,12 @@
       <div class="panel-body">
         <h5 style="color: grey; font-size: 125%;">Who to follow</h5>
         <% for @u in @toFollow do %>
-          <p style="font-weight: bold; opacity: 0.85;"><a href="/user/<%= @u.first_name %>"><%= @u.first_name %></a></p>
+        <!-- If signed in, user can view profiles, follow users and so, if not, cannot click links-->
+          <% if user_signed_in? %>
+            <p style="font-weight: bold; opacity: 0.85;"><a href="/user/<%= @u.first_name %>"><%= @u.first_name %></a></p>
+          <% else %>
+            <p style="font-weight: bold; opacity: 0.85;"><%= @u.first_name %></p>
+          <% end %>
         <% end %>
       </div>
     </div>
